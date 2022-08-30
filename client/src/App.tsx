@@ -1,12 +1,19 @@
-import React from 'react';
+import { ThemeContext, ThemeProvider } from 'context/ThemeContext';
+import React, { useContext } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from 'routes';
 
 function App() {
+  const themeCtx = useContext(ThemeContext);
+
   return (
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
+    <ThemeProvider>
+      <div className={`${themeCtx.dark && 'dark'}`}>
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </div>
+    </ThemeProvider>
   );
 }
 

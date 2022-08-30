@@ -1,8 +1,30 @@
-
 @import url(./styles/customComponents.css);
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-html, body {
-    font-family: 'Roboto', sans-serif !important;
+html,
+body {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 1px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(180, 180, 180);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(151, 151, 151);
 }
