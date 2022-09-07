@@ -17,24 +17,18 @@ const Navbar = (props: Props) => {
       <div
         className={`${
           open ? 'opacity-100' : 'opacity-0'
-        } flex bg-white w-full flex-col mt-11 lg:mt-0 lg:flex-row gap-6 lg:gap-20 justify-start lg:justify-center transition-all absolute lg:relative right-0 py-3 lg:py-0 px-16 lg:px-0`}
-      >
-        <NavLink
-          className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}
-          to="/"
-        >
+        } flex bg-white w-full flex-col mt-11 lg:mt-0 lg:flex-row gap-6 lg:gap-20 justify-start lg:justify-center transition-all absolute lg:relative right-0 py-3 lg:py-0 px-16 lg:px-0`}>
+        <NavLink className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')} to="/">
           Home
         </NavLink>
         <NavLink
           className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}
-          to="/explore"
-        >
+          to="/explore">
           Explore
         </NavLink>
         <NavLink
           className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}
-          to="/bookmarks"
-        >
+          to="/bookmarks">
           Bookmarks
         </NavLink>
       </div>
@@ -43,7 +37,7 @@ const Navbar = (props: Props) => {
         <div>Name</div>
       </div>
       <div className="block lg:hidden">
-        <button onClick={handleOpenMenu}>
+        <button type="button" onClick={handleOpenMenu}>
           <img src={menu} alt="menu" width={24} />
         </button>
       </div>

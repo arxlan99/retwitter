@@ -25,41 +25,56 @@ const Sidebar = (props: Props) => {
           <div className="pl-2 mb-4">
             <img src={twitter} alt="logo" />
           </div>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? 'font-bold' : 'font-normal'
-            }
-          >
+          <NavLink to="/" className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}>
             <SidebarButton>
               <HomeIcon color="#000" />
               <div>Home</div>
             </SidebarButton>
           </NavLink>
-          <SidebarButton>
+          {/*  <SidebarButton>
             <SearchIcon color="#000" />
             <div>Search</div>
-          </SidebarButton>
-          <SidebarButton>
-            <NotificationIcon color="#000" />
-            <div>Notifications</div>
-          </SidebarButton>
-          <SidebarButton>
-            <MessageIcon color="#000" />
-            <div>Messages</div>
-          </SidebarButton>
-          <SidebarButton>
-            <BookmarksIcon color="#000" />
-            <div>Bookmarks</div>
-          </SidebarButton>
-          <SidebarButton>
-            <ListsIcon color="#000" />
-            <div>Lists</div>
-          </SidebarButton>
-          <SidebarButton>
-            <ProfileIcon color="#000" />
-            <div>Profile</div>
-          </SidebarButton>
+          </SidebarButton> */}
+          <NavLink
+            to="/notifications"
+            className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}>
+            <SidebarButton>
+              <NotificationIcon color="#000" />
+              <div>Notifications</div>
+            </SidebarButton>
+          </NavLink>
+          <NavLink
+            to="/settings"
+            className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}>
+            <SidebarButton>
+              <MessageIcon color="#000" />
+              <div>Settings</div>
+            </SidebarButton>
+          </NavLink>
+          <NavLink
+            to="/bookmarks"
+            className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}>
+            <SidebarButton>
+              <BookmarksIcon color="#000" />
+              <div>Bookmarks</div>
+            </SidebarButton>
+          </NavLink>
+          <NavLink
+            to="/lists"
+            className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}>
+            <SidebarButton>
+              <ListsIcon color="#000" />
+              <div>Lists</div>
+            </SidebarButton>
+          </NavLink>
+          <NavLink
+            to="/profile"
+            className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}>
+            <SidebarButton>
+              <ProfileIcon color="#000" />
+              <div>Profile</div>
+            </SidebarButton>
+          </NavLink>
           <SidebarButton>
             <MoreIcon color="#000" />
             <div>More</div>
@@ -69,20 +84,27 @@ const Sidebar = (props: Props) => {
           </div>
         </div>
 
-        <div className="flex justify-center items-center w-fit gap-2 hover:bg-defaultHover rounded-full py-1 px-2 cursor-pointer">
-          <div>
-            <img
-              src="https://aui.atlassian.com/aui/latest/docs/images/avatar-person.svg"
-              width={40}
-              alt="as"
-            />
+        <div className="relative  cursor-pointer group">
+          <div className="hover:bg-defaultHover flex justify-center py-1 px-2 gap-2  w-fit rounded-full items-center">
+            <div>
+              <img
+                src="https://aui.atlassian.com/aui/latest/docs/images/avatar-person.svg"
+                width={40}
+                alt="as"
+              />
+            </div>
+            <div className="text-[15px]">
+              <div className="font-bold">Ozkan</div>
+              <div>@ozkan</div>
+            </div>
+            <div className="ml-20">
+              <DotIcon color="#000" />
+            </div>
           </div>
-          <div className="text-[15px]">
-            <div className="font-bold">Ozkan</div>
-            <div>@ozkan</div>
-          </div>
-          <div className="ml-20">
-            <DotIcon color="#000" />
+
+          <div className="w-60 transition-all group-hover:opacity-100 opacity-0 absolute right-6 -top-28 shadow bg-white rounded-2xl flex  flex-col overflow-hidden">
+            <div className="hover:bg-defaultHover p-4  ">Add an existing account</div>
+            <div className="hover:bg-defaultHover p-4  ">Log out</div>
           </div>
         </div>
       </div>

@@ -3,11 +3,13 @@ import { createContext, useState } from 'react';
 interface ThemeContextInterface {
   dark: boolean;
   toggleTheme: () => void;
+  setDark: (dark: boolean) => void;
 }
 
 const defaultState: ThemeContextInterface = {
-  dark: localStorage.getItem('theme') === 'dark' ? true : false,
+  dark: localStorage.getItem('theme') === 'dark',
   toggleTheme: () => {},
+  setDark: () => {},
 };
 
 export type State = typeof defaultState;
@@ -28,9 +30,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const value: ThemeContextInterface = {
     dark,
     toggleTheme,
+    setDark,
   };
 
-  return (
-    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
