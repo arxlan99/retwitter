@@ -1,3 +1,4 @@
+import Header from 'components/UI/Header';
 import TweetCard from 'components/UI/TweetCard';
 import React from 'react';
 
@@ -8,7 +9,7 @@ const Bookmarks = (props: Props) => {
 
   return (
     <div>
-      <div className="text-xl font-bold p-3 sticky top-0 bg-white/95">Bookmarks</div>
+      <Header title="Bookmarks" />
       {array.map((item) => (
         <TweetCard key={item} />
       ))}

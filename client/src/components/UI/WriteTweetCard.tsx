@@ -8,7 +8,7 @@ type Props = {};
 
 const WriteTweetCard = (props: Props) => {
   return (
-    <div className="flex p-2 border-b border-gray">
+    <div className="flex p-2 border-b border-[#daedf0] dark:border-gray-700">
       <div>
         <img
           src="https://aui.atlassian.com/aui/latest/docs/images/avatar-person.svg"
@@ -20,19 +20,19 @@ const WriteTweetCard = (props: Props) => {
         <div>
           <textarea
             placeholder="What's happening?"
-            className="resize-none w-full outline-none p-2 tracking-wide"
+            className="resize-none w-full outline-none p-2 tracking-wide bg-white dark:bg-black text-black dark:text-white"
             rows={2}
           />
         </div>
         <div className="flex justify-between w-full ">
           <div className="flex gap-1">
-            <button className="hover:bg-main/10 transition-all p-2 rounded-full">
+            <button type="button" className="hover:bg-main/10 transition-all p-2 rounded-full">
               <img src={MEDIA} alt="" width={24} />
             </button>
-            <button className="hover:bg-main/10 transition-all p-2 rounded-full">
+            <button type="button" className="hover:bg-main/10 transition-all p-2 rounded-full">
               <img src={GIF} alt="" width={24} />
             </button>
-            <button className="hover:bg-main/10 transition-all p-2 rounded-full">
+            <button type="button" className="hover:bg-main/10 transition-all p-2 rounded-full">
               <img src={SMILE} alt="" width={24} />
             </button>
           </div>

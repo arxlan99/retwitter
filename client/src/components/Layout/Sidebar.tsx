@@ -18,6 +18,9 @@ import { NavLink } from 'react-router-dom';
 type Props = {};
 
 const Sidebar = (props: Props) => {
+  const themeCtx = useContext(ThemeContext);
+  const color = !themeCtx.dark ? '#000' : '#fff';
+
   return (
     <div className="w-[281px] p-3 h-screen  ">
       <div className="flex flex-col justify-between h-full">
@@ -27,7 +30,7 @@ const Sidebar = (props: Props) => {
           </div>
           <NavLink to="/" className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}>
             <SidebarButton>
-              <HomeIcon color="#000" />
+              <HomeIcon color={color} />
               <div>Home</div>
             </SidebarButton>
           </NavLink>
@@ -39,7 +42,7 @@ const Sidebar = (props: Props) => {
             to="/notifications"
             className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}>
             <SidebarButton>
-              <NotificationIcon color="#000" />
+              <NotificationIcon color={color} />
               <div>Notifications</div>
             </SidebarButton>
           </NavLink>
@@ -47,7 +50,7 @@ const Sidebar = (props: Props) => {
             to="/settings"
             className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}>
             <SidebarButton>
-              <MessageIcon color="#000" />
+              <MessageIcon color={color} />
               <div>Settings</div>
             </SidebarButton>
           </NavLink>
@@ -55,7 +58,7 @@ const Sidebar = (props: Props) => {
             to="/bookmarks"
             className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}>
             <SidebarButton>
-              <BookmarksIcon color="#000" />
+              <BookmarksIcon color={color} />
               <div>Bookmarks</div>
             </SidebarButton>
           </NavLink>
@@ -63,7 +66,7 @@ const Sidebar = (props: Props) => {
             to="/lists"
             className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}>
             <SidebarButton>
-              <ListsIcon color="#000" />
+              <ListsIcon color={color} />
               <div>Lists</div>
             </SidebarButton>
           </NavLink>
@@ -71,12 +74,12 @@ const Sidebar = (props: Props) => {
             to="/profile"
             className={({ isActive }) => (isActive ? 'font-bold' : 'font-normal')}>
             <SidebarButton>
-              <ProfileIcon color="#000" />
+              <ProfileIcon color={color} />
               <div>Profile</div>
             </SidebarButton>
           </NavLink>
           <SidebarButton>
-            <MoreIcon color="#000" />
+            <MoreIcon color={color} />
             <div>More</div>
           </SidebarButton>
           <div className="mt-2 mr-4">
@@ -84,8 +87,8 @@ const Sidebar = (props: Props) => {
           </div>
         </div>
 
-        <div className="relative  cursor-pointer group">
-          <div className="hover:bg-defaultHover flex justify-center py-1 px-2 gap-2  w-fit rounded-full items-center">
+        <div className="relative  cursor-pointer group text-black dark:text-white">
+          <div className="hover:bg-defaultHover dark:hover:bg-darkDefaultHover flex justify-center py-1 px-2 gap-2  w-fit rounded-full items-center">
             <div>
               <img
                 src="https://aui.atlassian.com/aui/latest/docs/images/avatar-person.svg"
@@ -102,9 +105,11 @@ const Sidebar = (props: Props) => {
             </div>
           </div>
 
-          <div className="w-60 transition-all group-hover:opacity-100 opacity-0 absolute right-6 -top-28 shadow bg-white rounded-2xl flex  flex-col overflow-hidden">
-            <div className="hover:bg-defaultHover p-4  ">Add an existing account</div>
-            <div className="hover:bg-defaultHover p-4  ">Log out</div>
+          <div className=" w-60 transition-all group-hover:opacity-100  opacity-0 absolute right-6 -top-28 shadow shadow-slate-700 bg-white dark:bg-black rounded-2xl flex  flex-col overflow-hidden">
+            <div className="hover:bg-defaultHover p-4 dark:hover:bg-darkDefaultHover ">
+              Add an existing account
+            </div>
+            <div className="hover:bg-defaultHover p-4 dark:hover:bg-darkDefaultHover ">Log out</div>
           </div>
         </div>
       </div>

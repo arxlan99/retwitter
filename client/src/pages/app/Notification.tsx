@@ -1,11 +1,12 @@
+import Header from 'components/UI/Header';
 import NotificationTab from 'components/UI/NotificationTab';
 
 type Props = {};
 
 const Notification = (props: Props) => {
   return (
-    <div>
-      <div className="text-xl font-bold p-3 sticky top-0 bg-white/95">Notifications</div>
+    <div className="text-black dark:text-white">
+      <Header title="Notifications" />
       <NotificationTab />
     </div>
   );

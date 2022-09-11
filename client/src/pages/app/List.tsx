@@ -1,3 +1,4 @@
+import Header from 'components/UI/Header';
 import React from 'react';
 
 type Props = {};
@@ -5,7 +6,7 @@ type Props = {};
 const List = (props: Props) => {
   return (
     <div>
-      <div className="text-xl font-bold p-3 sticky top-0 bg-white/95">List</div>
+      <Header title="List" />
     </div>
   );
 };

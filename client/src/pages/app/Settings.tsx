@@ -1,3 +1,4 @@
+import Header from 'components/UI/Header';
 import { ThemeContext } from 'context/ThemeContext';
 import React, { useContext } from 'react';
 
@@ -8,7 +9,7 @@ const Settings = (props: Props) => {
 
   return (
     <div>
-      <div className="text-xl font-bold p-3 sticky top-0 bg-white/95">Settings</div>
+      <Header title="Settings" />
       <div className="p-3 flex justify-between">
         <div className="dark:text-white text-black">Dark theme</div>
         <label

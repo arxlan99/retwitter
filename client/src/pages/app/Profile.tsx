@@ -7,7 +7,7 @@ type Props = {};
 const Profile = (props: Props) => {
   return (
     <div>
-      <div className="text-xl font-bold p-3 sticky top-0 bg-white/95 z-50">
+      <div className="text-xl font-bold p-3 sticky top-0 bg-white/95 dark:bg-black z-50 text-black dark:text-white">
         Ozkan
       </div>
       <div>
@@ -19,10 +19,10 @@ const Profile = (props: Props) => {
           <img
             src="https://pbs.twimg.com/profile_images/1375796931591602177/_0eyyiTr_400x400.jpg"
             alt=""
-            className="rounded-full w-36 border-4 border-white -translate-y-1/2 translate-x-4"
+            className="rounded-full w-36 border-4 border-white dark:border-darkDefaultHover -translate-y-1/2 translate-x-4"
           />
         </div>
-        <div className="px-4">
+        <div className="px-4 text-black dark:text-white">
           <div className="font-extrabold text-lg">Ozkan</div>
           <div className="-translate-y-2">@ozkan</div>
           <div className="text-[#536471] flex gap-2 items-center pt-2 text-[15px]">
@@ -34,15 +34,11 @@ const Profile = (props: Props) => {
           <div className="flex font-bold gap-4 mt-2">
             <div className="flex gap-1 items-center">
               <span className="tracking-tighter	">111</span>
-              <span className="text-[#536471] text-sm font-normal">
-                Following
-              </span>
+              <span className="text-[#536471] text-sm font-normal">Following</span>
             </div>
             <div className="flex gap-1 items-center">
               <span className="tracking-tighter	">21</span>
-              <span className="text-[#536471] text-sm font-normal">
-                Followers
-              </span>
+              <span className="text-[#536471] text-sm font-normal">Followers</span>
             </div>
           </div>
         </div>

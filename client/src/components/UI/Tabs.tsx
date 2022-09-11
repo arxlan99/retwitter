@@ -8,10 +8,10 @@ const Tabs = (props: Props) => {
 
   return (
     <div>
-      <div className="grid grid-cols-4  font-normal ">
+      <div className="grid grid-cols-4  font-normal text-dark dark:text-white ">
         <button
           type="button"
-          className="py-3 px-8 hover:bg-defaultHover transition-all "
+          className="py-3 px-8 hover:bg-defaultHover dark:hover:bg-darkDefaultHover transition-all "
           onClick={() => setActiveTab(0)}>
           <span className={`${activeTab === 0 && 'font-bold border-b-4 border-blue-400 p-2'}`}>
             Tweets
@@ -19,7 +19,7 @@ const Tabs = (props: Props) => {
         </button>
         <button
           type="button"
-          className="py-3 px-8 hover:bg-defaultHover transition-all "
+          className="py-3 px-8 hover:bg-defaultHover dark:hover:bg-darkDefaultHover transition-all "
           onClick={() => setActiveTab(1)}>
           <span className={`${activeTab === 1 && 'font-bold border-b-4 border-blue-400 p-2'}`}>
             Replies
@@ -27,7 +27,7 @@ const Tabs = (props: Props) => {
         </button>
         <button
           type="button"
-          className="py-3 px-8 hover:bg-defaultHover transition-all  line"
+          className="py-3 px-8 hover:bg-defaultHover dark:hover:bg-darkDefaultHover transition-all "
           onClick={() => setActiveTab(2)}>
           <span className={`${activeTab === 2 && 'font-bold border-b-4 border-blue-400 p-2'}`}>
             Media
@@ -35,7 +35,7 @@ const Tabs = (props: Props) => {
         </button>
         <button
           type="button"
-          className="py-3 px-8 hover:bg-defaultHover transition-all "
+          className="py-3 px-8 hover:bg-defaultHover dark:hover:bg-darkDefaultHover transition-all "
           onClick={() => setActiveTab(3)}>
           <span className={`${activeTab === 3 && 'font-bold border-b-4 border-blue-400 p-2'}`}>
             Likes

@@ -6,7 +6,7 @@ type Props = {};
 
 const RightBar = (props: Props) => {
   return (
-    <div className="w-[400px] hidden lg:flex p-2 pl-6 flex-col gap-4  ">
+    <div className="w-[400px] hidden lg:flex p-2 pl-6 flex-col gap-4 text-black dark:text-white ">
       <SearchBar />
       <ContentCard />
     </div>

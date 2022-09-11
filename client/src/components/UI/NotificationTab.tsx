@@ -8,10 +8,10 @@ const NotificationTab = (props: Props) => {
 
   return (
     <div>
-      <div className="grid grid-cols-2 font-normal ">
+      <div className="grid grid-cols-2 font-normal text-black dark:text-white">
         <button
           type="button"
-          className="py-4 px-8 hover:bg-defaultHover transition-all "
+          className="py-4 px-8 hover:bg-defaultHover dark:hover:bg-darkDefaultHover/50 transition-all "
           onClick={() => setActiveTab(0)}>
           <span className={`${activeTab === 0 && 'font-bold border-b-4 border-blue-400 p-2'}`}>
             All
@@ -19,7 +19,7 @@ const NotificationTab = (props: Props) => {
         </button>
         <button
           type="button"
-          className="py-3 px-8 hover:bg-defaultHover transition-all "
+          className="py-3 px-8 hover:bg-defaultHover dark:hover:bg-darkDefaultHover/50 transition-all "
           onClick={() => setActiveTab(1)}>
           <span className={`${activeTab === 1 && 'font-bold border-b-4 border-blue-400 p-2'}`}>
             Mentions
@@ -27,8 +27,8 @@ const NotificationTab = (props: Props) => {
         </button>
       </div>
       {activeTab === 0 && (
-        <>
-          <div className="flex px-6 py-3 hover:bg-defaultHover transition-all cursor-pointer">
+        <div className="text-black dark:text-white">
+          <div className="flex px-6 py-3 hover:bg-defaultHover dark:hover:bg-darkDefaultHover/50 transition-all cursor-pointer">
             <div>
               <img src={Star} alt="" width={60} />
             </div>
@@ -46,7 +46,7 @@ const NotificationTab = (props: Props) => {
               </div>
             </div>
           </div>
-          <div className="flex px-6 py-3 hover:bg-defaultHover transition-all cursor-pointer">
+          <div className="flex px-6 py-3 hover:bg-defaultHover dark:hover:bg-darkDefaultHover/50 transition-all cursor-pointer">
             <div>
               <img src={Star} alt="" width={60} />
             </div>
@@ -64,7 +64,7 @@ const NotificationTab = (props: Props) => {
               </div>
             </div>
           </div>
-          <div className="flex px-6 py-3 hover:bg-defaultHover transition-all cursor-pointer">
+          <div className="flex px-6 py-3 hover:bg-defaultHover dark:hover:bg-darkDefaultHover/50 transition-all cursor-pointer">
             <div>
               <img src={Star} alt="" width={60} />
             </div>
@@ -82,9 +82,9 @@ const NotificationTab = (props: Props) => {
               </div>
             </div>
           </div>
-        </>
+        </div>
       )}
-      {activeTab === 1 && <div>2</div>}
+      {activeTab === 1 && <div className="text-black dark:text-white">2</div>}
     </div>
   );
 };

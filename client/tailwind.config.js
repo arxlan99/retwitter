@@ -8,6 +8,7 @@ module.exports = {
         main: '#1D9BF0',
         mainHover: '#1A8CD8',
         defaultHover: '#E7E7E8',
+        darkDefaultHover: '#2F2F2F',
       },
     },
   },
