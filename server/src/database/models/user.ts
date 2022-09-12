@@ -21,12 +21,23 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true,
     unique: true,
+    lowercase: true,
     validate: [validator.isEmail, 'Please provide a valid email'],
   },
   password: {
     type: String,
     required: true,
     trim: true,
+    minlength: 8,
+    validate: {
+      // at least one number, one lowercase and one uppercase letter
+      // at least eight characters
+      validator: function (val: string) {
+        return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(val);
+      },
+      message:
+        'Password must contain at least one number, one lowercase and one uppercase letter. At least eight characters.',
+    },
   },
   createdAt: {
     type: Date,
@@ -56,6 +67,13 @@ userSchema.pre('save', function (next) {
     });
   });
 });
+
+userSchema.methods.correctPassword = async function (
+  candidatePassword: string,
+  userPassword: string
+) {
+  return await bcrypt.compare(candidatePassword, userPassword);
+};
 
 export const User = mongoose.model<IUser>('User', userSchema);
 

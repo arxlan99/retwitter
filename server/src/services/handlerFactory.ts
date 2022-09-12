@@ -32,14 +32,10 @@ class HandlerFactory<TModel> {
   updateOne = () => {
     return async (req: Request, res: Response, next: NextFunction) => {
       try {
-        const doc = await this.Model.findByIdAndUpdate(
-          req.params.id,
-          req.body,
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
+        const doc = await this.Model.findByIdAndUpdate(req.params.id, req.body, {
+          new: true,
+          runValidators: true,
+        });
 
         if (!doc) {
           return next(new AppError('No document found with that ID', 404));
@@ -70,10 +66,12 @@ class HandlerFactory<TModel> {
     };
   };
 
-  getOne = (unSelect?: string) => {
+  getOne = (data?: { unSelect?: string; populate?: string }) => {
     return async (req: Request, res: Response, next: NextFunction) => {
       try {
-        let query = this.Model.findById(req.params.id).select(unSelect);
+        let query = this.Model.findById(req.params.id)
+          .select(data?.unSelect)
+          .populate(data?.populate || '', data?.unSelect);
         const doc = await query;
 
         if (!doc) {
@@ -96,12 +94,14 @@ class HandlerFactory<TModel> {
    * @returns {Promise<TModel[]>}
    */
 
-  getAll = (unSelect?: string) => {
+  getAll = (data?: { unSelect?: string; populate?: string }) => {
     return async (req: Request, res: Response, next: NextFunction) => {
       try {
         // get data by interacting with the model
         const features = new APIFeatures(
-          this.Model.find().select(unSelect),
+          this.Model.find()
+            .select(data?.unSelect)
+            .populate(data?.populate || '', data?.unSelect),
           req.query
         )
           .filter()
