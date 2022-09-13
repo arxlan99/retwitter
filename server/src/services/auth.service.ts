@@ -58,7 +58,7 @@ class AuthService {
         );
 
         if (!user || !(await user.correctPassword(password, user.password))) {
-          return next(new AppError('Incorrect email or password', 401));
+          return next(new AppError('Incorrect email or password', 422));
         }
         createSendToken(user, 200, req, res);
       } catch (error) {
@@ -77,7 +77,7 @@ class AuthService {
           token = req.cookies.jwt;
         }
         if (!token) {
-          return next(new AppError('You are not logged in! Please log in to get access.', 401));
+          return next(new AppError('You are not logged in! Please log in to get access.', 404));
         }
 
         const decoded = jwt.verify(token, 'secret-key');
@@ -94,7 +94,7 @@ class AuthService {
     };
   };
 
-  /*   logout = () => {
+  logout = () => {
     return async (req: Request, res: Response, next: NextFunction) => {
       try {
         res.clearCookie('jwt');
@@ -103,7 +103,23 @@ class AuthService {
         next(error);
       }
     };
-  }; */
+  };
+
+  authMe = () => {
+    return async (req: any, res: Response, next: NextFunction) => {
+      try {
+        const user = await User.findById(req.user._id);
+        res.status(200).json({
+          status: 'success',
+          data: {
+            user,
+          },
+        });
+      } catch (error) {
+        next(error);
+      }
+    };
+  };
 }
 
 export default AuthService;

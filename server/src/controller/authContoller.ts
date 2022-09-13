@@ -5,4 +5,5 @@ const userService = new AuthService();
 export const login = userService.login();
 export const protect = userService.protect();
 export const signup = userService.signup();
-// export const logout = userService.logout();
+export const logout = userService.logout();
+export const authMe = userService.authMe();

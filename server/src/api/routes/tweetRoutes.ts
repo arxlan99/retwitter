@@ -6,6 +6,8 @@ import {
   getTweet,
   updateTweet,
 } from './../../controller/tweetController';
+import { protect } from '../../controller/authContoller';
+
 import Multer from 'multer';
 import path from 'path';
 
@@ -58,7 +60,9 @@ router.route('/test').post(multer.single('imgfile'), (req: any, res, next) => {
   }
 });
 
-router.route('/').get(getAllTweets).post(createTweet);
+// router.use(protect);
+
+router.route('/').get(protect, getAllTweets).post(createTweet);
 
 router.route('/:id').get(getTweet).patch(updateTweet).delete(deleteTweet);
 

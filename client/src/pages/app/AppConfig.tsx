@@ -1,4 +1,5 @@
 import MainLayout from 'components/Layout/MainLayout';
+import PrivateRoute from 'components/Routes/PrivateRoute';
 import Bookmarks from './Bookmarks';
 import Explore from './Explore';
 import Home from './Home';
@@ -10,35 +11,40 @@ import Settings from './Settings';
 const AppConfig = {
   routes: [
     {
-      element: <MainLayout />,
+      element: <PrivateRoute />,
       children: [
         {
-          path: '/',
-          element: <Home />,
-        },
-        {
-          path: '/bookmarks',
-          element: <Bookmarks />,
-        },
-        {
-          path: '/explore',
-          element: <Explore />,
-        },
-        {
-          path: '/profile',
-          element: <Profile />,
-        },
-        {
-          path: '/notifications',
-          element: <Notification />,
-        },
-        {
-          path: '/lists',
-          element: <List />,
-        },
-        {
-          path: '/settings',
-          element: <Settings />,
+          element: <MainLayout />,
+          children: [
+            {
+              path: '/',
+              element: <Home />,
+            },
+            {
+              path: '/bookmarks',
+              element: <Bookmarks />,
+            },
+            {
+              path: '/explore',
+              element: <Explore />,
+            },
+            {
+              path: '/profile',
+              element: <Profile />,
+            },
+            {
+              path: '/notifications',
+              element: <Notification />,
+            },
+            {
+              path: '/lists',
+              element: <List />,
+            },
+            {
+              path: '/settings',
+              element: <Settings />,
+            },
+          ],
         },
       ],
     },

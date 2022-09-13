@@ -44,6 +44,8 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off',
     'react/destructuring-assignment': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/require-default-props': 'off',
+    'no-param-reassign': 'off',
   },
   ignorePatterns: ['.eslintrc.js', 'tailwind.config.js'],
 };

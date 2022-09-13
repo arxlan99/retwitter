@@ -1,5 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 import userRoutes from './api/routes/userRoutes';
 import authRoutes from './api/routes/authRoutes';
@@ -12,7 +14,15 @@ const app: Application = express();
 
 const port = process.env.PORT || 5000;
 
+app.use(
+  cors({
+    credentials: true,
+    origin: ['http://localhost:3000'],
+  })
+);
+
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);

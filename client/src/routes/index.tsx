@@ -5,7 +5,7 @@ import AuthConfig from 'pages/auth/AuthConfig';
 
 function Routes() {
   const routes = [AppConfig.routes, AuthConfig.routes];
-  let element = useRoutes([
+  const element = useRoutes([
     ...routes.flat(),
     {
       path: '*',

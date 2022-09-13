@@ -1,18 +1,24 @@
+import ProtectedRoute from 'components/Routes/ProtectedRoute';
 import Login from './Login';
 import Register from './Register';
 
 const AuthConfig = {
   routes: [
     {
-      path: '/auth',
+      element: <ProtectedRoute />,
       children: [
         {
-          path: 'login',
-          element: <Login />,
-        },
-        {
-          path: 'register',
-          element: <Register />,
+          path: '/auth',
+          children: [
+            {
+              path: 'login',
+              element: <Login />,
+            },
+            {
+              path: 'register',
+              element: <Register />,
+            },
+          ],
         },
       ],
     },

@@ -13,13 +13,26 @@ import DotIcon from 'assets/jsx/dot-icon';
 import MoreIcon from 'assets/jsx/more-icon';
 import SidebarButton from 'components/buttons/SidebarButton';
 import TweetButton from 'components/buttons/TweetButton';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { logout } from 'api/endpoints';
+import { useMutation } from '@tanstack/react-query';
 
 type Props = {};
 
 const Sidebar = (props: Props) => {
   const themeCtx = useContext(ThemeContext);
   const color = !themeCtx.dark ? '#000' : '#fff';
+  const navigate = useNavigate();
+
+  const { mutateAsync } = useMutation(logout);
+
+  const handleLogout = () => {
+    mutateAsync().then(() => {
+      window.location.href = '/auth/login';
+    });
+
+    // navigate('/auth/login');
+  };
 
   return (
     <div className="w-[281px] p-3 h-screen  ">
@@ -109,7 +122,12 @@ const Sidebar = (props: Props) => {
             <div className="hover:bg-defaultHover p-4 dark:hover:bg-darkDefaultHover ">
               Add an existing account
             </div>
-            <div className="hover:bg-defaultHover p-4 dark:hover:bg-darkDefaultHover ">Log out</div>
+            <button
+              type="button"
+              onClick={() => handleLogout()}
+              className="hover:bg-defaultHover p-4 dark:hover:bg-darkDefaultHover ">
+              Log out
+            </button>
           </div>
         </div>
       </div>
