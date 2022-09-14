@@ -1,14 +1,14 @@
-FROM node:16.16.0
+FROM node:16.0.0
 
 RUN npm install -g nodemon
 
 WORKDIR /app
 
-COPY package.json .
+COPY /server/package.json .
 
 RUN npm install
 
-COPY . .
+COPY /server .
 
 EXPOSE 4000
 # required for docker desktop port mapping
