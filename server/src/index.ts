@@ -17,7 +17,7 @@ const port = process.env.PORT || 4000;
 app.use(
   cors({
     credentials: true,
-    origin: ['https://retwitter.vercel.app'],
+    origin: ['https://retwitter.vercel.app', 'http://localhost:3000'],
   })
 );
 
