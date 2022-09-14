@@ -11,13 +11,18 @@ const signToken = (id: string) => {
   });
 };
 
+/*writeHead(200, {
+          "Set-Cookie": "token=encryptedstring; HttpOnly",
+      "Access-Control-Allow-Credentials": "true"
+        }*/
+
 const createSendToken = (user: any, statusCode: any, req: Request, res: Response) => {
   const token = signToken(user._id);
 
   res.cookie('jwt', token, {
     expires: new Date(Date.now() + 1000 * 24 * 60 * 60 * 1000),
     httpOnly: true,
-    secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+    // secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
   });
 
   // Remove password from output
@@ -69,6 +74,7 @@ class AuthService {
 
   protect = () => {
     return async (req: any, res: Response, next: NextFunction) => {
+      console.log('protect-----', req.cookies);
       try {
         let token;
         if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -109,17 +115,12 @@ class AuthService {
     return async (req: any, res: Response, next: NextFunction) => {
       try {
         const user = await User.findById(req.user._id);
-        res
-          .writeHead(200, {
-            'Set-Cookie': 'token=encryptedstring; HttpOnly',
-            'Access-Control-Allow-Credentials': 'true',
-          })
-          .json({
-            status: 'success',
-            data: {
-              user,
-            },
-          });
+        res.status(200).json({
+          status: 'success',
+          data: {
+            user,
+          },
+        });
       } catch (error) {
         next(error);
       }
