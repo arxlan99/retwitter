@@ -101,7 +101,11 @@ class AuthService {
   logout = () => {
     return async (req: Request, res: Response, next: NextFunction) => {
       try {
-        res.clearCookie('jwt');
+        res.clearCookie('jwt', {
+          httpOnly: true,
+          sameSite: 'none',
+          secure: true,
+        });
         res.status(200).json({ status: 'success' });
       } catch (error) {
         next(error);
