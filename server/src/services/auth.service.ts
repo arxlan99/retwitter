@@ -109,12 +109,17 @@ class AuthService {
     return async (req: any, res: Response, next: NextFunction) => {
       try {
         const user = await User.findById(req.user._id);
-        res.status(200).json({
-          status: 'success',
-          data: {
-            user,
-          },
-        });
+        res
+          .writeHead(200, {
+            'Set-Cookie': 'token=encryptedstring; HttpOnly',
+            'Access-Control-Allow-Credentials': 'true',
+          })
+          .json({
+            status: 'success',
+            data: {
+              user,
+            },
+          });
       } catch (error) {
         next(error);
       }
