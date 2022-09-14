@@ -1,5 +1,6 @@
 import api from './base';
 
+// tweets
 export const getTweets = async () => {
   const response = await api.get('/tweets');
   return response.data;
@@ -10,6 +11,12 @@ export const getTweet = async (id: string) => {
   return response.data;
 };
 
+export const createTweet = async (data: any) => {
+  const response = await api.post('/tweets', data);
+  return response.data;
+};
+
+// auth apis
 export const login = async (data: any) => {
   const response = await api.post('/auth/login', data);
   return response.data;

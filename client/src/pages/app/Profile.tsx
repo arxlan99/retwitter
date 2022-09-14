@@ -1,10 +1,13 @@
 import React from 'react';
 import Calendar from 'assets/icons/calendar.svg';
 import Tabs from 'components/UI/Tabs';
+import { useAppSelector } from 'store';
 
 type Props = {};
 
 const Profile = (props: Props) => {
+  const user = useAppSelector((state) => state.user);
+
   return (
     <div>
       <div className="text-xl font-bold p-3 sticky top-0 bg-white/95 dark:bg-black z-50 text-black dark:text-white">
@@ -23,8 +26,8 @@ const Profile = (props: Props) => {
           />
         </div>
         <div className="px-4 text-black dark:text-white">
-          <div className="font-extrabold text-lg">Ozkan</div>
-          <div className="-translate-y-2">@ozkan</div>
+          <div className="font-extrabold text-lg">{user.name}</div>
+          <div className="-translate-y-2">@{user.name.split(' ')[0]}</div>
           <div className="text-[#536471] flex gap-2 items-center pt-2 text-[15px]">
             <div>
               <img src={Calendar} alt="" width={18} />

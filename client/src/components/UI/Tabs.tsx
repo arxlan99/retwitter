@@ -1,10 +1,18 @@
 import React from 'react';
+import Spinner from 'assets/icons/spinner.svg';
+import { useQuery } from '@tanstack/react-query';
+import { getTweets } from 'api/endpoints';
+import { useAppSelector } from 'store';
+
 import TweetCard from './TweetCard';
 
 type Props = {};
 
 const Tabs = (props: Props) => {
   const [activeTab, setActiveTab] = React.useState(0);
+  const { data: tweets, isLoading } = useQuery(['customTweets'], getTweets);
+  const user = useAppSelector((state) => state.user);
+  console.log(tweets);
 
   return (
     <div>
@@ -44,26 +52,25 @@ const Tabs = (props: Props) => {
       </div>
       {activeTab === 0 && (
         <div>
-          <TweetCard />
-          <TweetCard />
+          {isLoading ? (
+            <div className="flex justify-center">
+              <img src={Spinner} alt="loading..." width={60} />
+            </div>
+          ) : (
+            tweets.data
+              .filter((item: any) => item.user._id === user._id)
+              .map((item: any) => <TweetCard tweet={item} key={item._id} />)
+          )}
         </div>
       )}
       {activeTab === 1 && (
         <div>
-          <TweetCard />
-          <TweetCard />
+          {/*  <TweetCard />
+          <TweetCard /> */}
         </div>
       )}
-      {activeTab === 2 && (
-        <div>
-          <TweetCard />
-        </div>
-      )}
-      {activeTab === 3 && (
-        <div>
-          <TweetCard />
-        </div>
-      )}
+      {activeTab === 2 && <div>{/* <TweetCard /> */}</div>}
+      {activeTab === 3 && <div>{/* <TweetCard /> */}</div>}
     </div>
   );
 };

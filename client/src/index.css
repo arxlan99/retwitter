@@ -28,3 +28,12 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(151, 151, 151);
 }
+
+.custom-file-upload[type='file']::file-selector-button {
+  width: 20px;
+  color: transparent;
+  background-color: #1d9bf0;
+  border: none;
+  background: url(./assets/icons/media.svg) center no-repeat;
+  background-size: 20px;
+}

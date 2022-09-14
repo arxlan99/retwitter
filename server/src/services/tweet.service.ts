@@ -3,7 +3,16 @@ import { ParamsDictionary } from 'express-serve-static-core';
 import { ParsedQs } from 'qs';
 import { ITweet } from '../database/models/tweets';
 import HandlerFactory from './handlerFactory';
+import path from 'path';
+import { Storage } from '@google-cloud/storage';
 
+let projectId = process.env.GOOGLE_CLOUD_PROJECT_ID; // Get this from Google Cloud
+let keyFilename = path.join(__dirname, 'general-projects-360221-3af43f396d83.json'); // Get this from Google Cloud -> Credentials -> Service Accounts
+const storage = new Storage({
+  projectId,
+  keyFilename,
+});
+const bucket = storage.bucket('retwitter'); // Get this from Google Cloud -> Storage
 
 class TweetService extends HandlerFactory<ITweet> {
   constructor(Model: any) {
@@ -17,24 +26,33 @@ class TweetService extends HandlerFactory<ITweet> {
   ) => Promise<void> = () => {
     return async (req, res, next) => {
       try {
-        const storage = new Storage();
-        console.log(req);
-        res.send('ok');
-        /*   storage.bucket('retwitter').upload('', {}, (err: any, file: any) => {
-          if (err) {
-            console.log(err);
-          }
-          console.log(file);
-        });
- */
-        // const gc = path.join(__dirname, 'general-projects-360221-3af43f396d83.json');
-        // const projectId = 'general-projects-360221';
-        /* const doc = await this.Model.create(req.body);
+        // add file to bucket
+        const blob = bucket.file(req.file.originalname);
+        const blobStream = blob.createWriteStream();
 
-        res.status(201).json({
-          status: 'success',
-          data: doc,
-        }); */
+        if (req.file) {
+          blobStream.on('error', (err: any) => {
+            next(err);
+          });
+
+          blobStream.on('finish', async () => {
+            // The public URL can be used to directly access the file via HTTP.
+            const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+
+            const doc = await this.Model.create({
+              image: publicUrl,
+              text: req.body.text,
+              user: req.user._id,
+            });
+
+            res.status(200).json({
+              data: doc,
+              status: 'success',
+            });
+          });
+
+          blobStream.end(req.file.buffer);
+        }
       } catch (error: any) {
         next(error);
       }

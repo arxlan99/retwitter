@@ -3,6 +3,7 @@ import { ThemeContext, ThemeProvider } from 'context/ThemeContext';
 import React, { useContext } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from 'routes';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const themeCtx = useContext(ThemeContext);

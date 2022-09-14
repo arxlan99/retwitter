@@ -9,6 +9,7 @@ const Button = (props: Props) => {
   const { children, isLoading } = props;
   return (
     <button
+      {...props}
       type="button"
       className="rounded-full bg-main text-white px-5 py-2 w-fit font-bold hover:bg-mainHover transition-all">
       {isLoading ? 'Loading...' : children}

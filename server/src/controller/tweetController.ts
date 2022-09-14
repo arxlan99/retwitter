@@ -5,7 +5,7 @@ const tweetService = new TweetService(Tweet);
 
 export const getAllTweets = tweetService.getAll({
   populate: 'user',
-  unSelect: '-__v',
+  unSelect: '-__v -password',
 });
 export const createTweet = tweetService.createOne();
 export const getTweet = tweetService.getOne({

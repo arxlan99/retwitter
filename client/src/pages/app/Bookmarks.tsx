@@ -10,9 +10,9 @@ const Bookmarks = (props: Props) => {
   return (
     <div>
       <Header title="Bookmarks" />
-      {array.map((item) => (
+      {/*  {array.map((item) => (
         <TweetCard key={item} />
-      ))}
+      ))} */}
     </div>
   );
 };

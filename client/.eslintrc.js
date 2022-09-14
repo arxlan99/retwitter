@@ -46,6 +46,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
     'no-param-reassign': 'off',
+    'no-underscore-dangle': 'off',
   },
   ignorePatterns: ['.eslintrc.js', 'tailwind.config.js'],
 };

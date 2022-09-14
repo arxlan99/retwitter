@@ -4,7 +4,7 @@ import APIFeatures from '../utils/apiFetaure';
 import mongoose from 'mongoose';
 
 class HandlerFactory<TModel> {
-  private Model: mongoose.Model<TModel>;
+  protected Model: mongoose.Model<TModel>;
 
   constructor(Model: any) {
     this.Model = Model;

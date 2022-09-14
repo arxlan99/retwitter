@@ -7,14 +7,22 @@ import { MdFavoriteBorder, MdOutlineModeComment } from 'react-icons/md';
 import { BsUpload } from 'react-icons/bs';
 import { AiOutlineRetweet } from 'react-icons/ai';
 
-type Props = {};
+type Props = {
+  tweet: any;
+};
 
 const TweetCard = (props: Props) => {
+  const { tweet } = props;
   const themeCtx = useContext(ThemeContext);
+  const time = new Date(tweet.createdAt).toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  });
   const color = !themeCtx.dark ? '#000' : '#fff';
   return (
     <div className="border-b border-[#daedf0] dark:border-gray-700 flex px-4 py-3 gap-3 hover:bg-[#f7f7f7] hover:bg-darkDefaultHover/20 transition-all cursor-pointer text-black dark:text-white">
-      <div>
+      <div className="w-32">
         <img
           src="https://aui.atlassian.com/aui/latest/docs/images/avatar-person.svg"
           width={64}
@@ -23,18 +31,14 @@ const TweetCard = (props: Props) => {
       </div>
       <div className="flex flex-col ">
         <div className="flex gap-1">
-          <div className="font-bold">The Verge</div>
-          <div className="text-[#536471]">@verge</div>
-          <div className="text-[#536471]">· 7m</div>
+          <div className="font-bold">{tweet.user.name}</div>
+          <div className="text-[#536471]">@{tweet.user.name.split(' ')[0]}</div>
+          <div className="text-[#536471]">· {time}</div>
         </div>
-        <div className="flex flex-col gap-2">
-          <div>Tesla slapped with class action lawsuit over phantom braking problem</div>
-          <div>
-            <img
-              src="https://pbs.twimg.com/media/FbbDtq0WIAIGrxM?format=jpg&name=small"
-              alt=""
-              className="rounded-xl"
-            />
+        <div className="flex flex-col gap-2 h-96 ">
+          <div>{tweet.text}</div>
+          <div className=" overflow-hidden">
+            <img src={tweet.image} alt="" className="rounded-xl bg-contain max-h-80 w-screen" />
           </div>
           <div className="flex justify-between items-center mr-16">
             <div className="p-2 rounded-full dark:hover:bg-darkDefaultHover hover:bg-blue-100/80">
