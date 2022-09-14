@@ -7,12 +7,12 @@ import path from 'path';
 import { Storage } from '@google-cloud/storage';
 
 let projectId = process.env.GOOGLE_CLOUD_PROJECT_ID; // Get this from Google Cloud
-let keyFilename = path.join(__dirname, 'general-projects-360221-3af43f396d83.json'); // Get this from Google Cloud -> Credentials -> Service Accounts
+let keyFilename = path.join(__dirname, 'passport-js-355812-27cda5327141.json'); // Get this from Google Cloud -> Credentials -> Service Accounts
 const storage = new Storage({
   projectId,
   keyFilename,
 });
-const bucket = storage.bucket('retwitter'); // Get this from Google Cloud -> Storage
+const bucket = storage.bucket('retwitter-1'); // Get this from Google Cloud -> Storage
 
 class TweetService extends HandlerFactory<ITweet> {
   constructor(Model: any) {
