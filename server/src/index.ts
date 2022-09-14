@@ -34,7 +34,6 @@ app.all('*', (req: Request, res: Response, next: NextFunction) => {
 
 app.use(globalErrorHandler);
 
-
 mongoose
   .connect(
     'mongodb+srv://arslan:TwPJ7fBPbfX02CNe@cluster0.z9ilwtm.mongodb.net/twitter?retryWrites=true&w=majority'
