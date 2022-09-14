@@ -18,7 +18,9 @@ export const createTweet = async (data: any) => {
 
 // auth apis
 export const login = async (data: any) => {
-  const response = await api.post('/auth/login', data);
+  const response = await api.post('/auth/login', data, {
+    withCredentials: true,
+  });
   return response.data;
 };
 
