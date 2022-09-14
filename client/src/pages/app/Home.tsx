@@ -22,7 +22,7 @@ const Home = (props: Props) => {
       ) : (
         <>
           <WriteTweetCard refetch={refetch} />
-          {tweets.data.map((item: any) => (
+          {tweets.data?.map((item: any) => (
             <TweetCard tweet={item} key={item._id} />
           ))}
         </>

@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "start": "tsc --outDir tmp && node tmp/index.js",
-    "build": "tsc --outDir tmp",
+    "start": "tsc --outDir dist && node dist/index.js",
+    "build": "tsc --outDir dist",
     "dev": "nodemon NODE_ENV=development src/index.ts"
   },
   "keywords": [],

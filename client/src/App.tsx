@@ -8,7 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const themeCtx = useContext(ThemeContext);
 
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
