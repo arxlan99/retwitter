@@ -38,7 +38,7 @@ const Sidebar = (props: Props) => {
   };
 
   return (
-    <div className="w-[281px] p-3 h-screen  ">
+    <div className="w-[281px] p-3 h-screen transition-all hidden lg:block">
       <div className="flex flex-col justify-between h-full">
         <div className="text-xl flex flex-col gap-1 ">
           <div className="pl-2 mb-4">

@@ -22,10 +22,10 @@ const TweetCard = (props: Props) => {
   const color = !themeCtx.dark ? '#000' : '#fff';
   return (
     <div className="border-b border-[#daedf0] dark:border-gray-700 flex px-4 py-3 gap-3 hover:bg-[#f7f7f7] hover:bg-darkDefaultHover/20 transition-all cursor-pointer text-black dark:text-white">
-      <div className="w-32">
+      <div className="w-14">
         <img
           src="https://aui.atlassian.com/aui/latest/docs/images/avatar-person.svg"
-          width={64}
+          className="w-full"
           alt="as"
         />
       </div>
@@ -37,8 +37,8 @@ const TweetCard = (props: Props) => {
         </div>
         <div className="flex flex-col gap-2 h-96 ">
           <div>{tweet.text}</div>
-          <div className=" overflow-hidden">
-            <img src={tweet.image} alt="" className="rounded-xl bg-contain max-h-80 w-screen" />
+          <div className="overflow-hidden h-80">
+            <img src={tweet.image} alt="" className="rounded-xl bg-contain h-full w-full" />
           </div>
           <div className="flex justify-between items-center mr-16">
             <div className="p-2 rounded-full dark:hover:bg-darkDefaultHover hover:bg-blue-100/80">
