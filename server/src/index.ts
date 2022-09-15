@@ -45,13 +45,9 @@ app.all('*', (req: Request, res: Response, next: NextFunction) => {
 
 app.use(globalErrorHandler);
 
-mongoose
-  .connect(
-    'mongodb+srv://arslan:TwPJ7fBPbfX02CNe@cluster0.z9ilwtm.mongodb.net/twitter?retryWrites=true&w=majority'
-  )
-  .then(() => {
-    console.log('DB connection successful!');
-  });
+mongoose.connect(process.env.MONGO_URI as string).then(() => {
+  console.log('DB connection successful!');
+});
 
 app.listen(port, () => {
   console.log(`App running on port http://localhost:${port} ...`);
