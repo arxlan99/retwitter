@@ -15,7 +15,7 @@ const createSendToken = (user: any, statusCode: any, req: Request, res: Response
   const token = signToken(user._id);
 
   res.cookie('jwt', token, {
-    // expires: new Date(Date.now() + 1000 * 24 * 60 * 60),
+    expires: new Date(Date.now() + 1000 * 24 * 60 * 60 * 1000),
     httpOnly: true,
     sameSite: 'none',
     secure: true,
@@ -102,6 +102,7 @@ class AuthService {
     return async (req: Request, res: Response, next: NextFunction) => {
       try {
         res.clearCookie('jwt', {
+          expires: new Date(Date.now() + 1000 * 24 * 60 * 60 * 1000),
           httpOnly: true,
           sameSite: 'none',
           secure: true,
