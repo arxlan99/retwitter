@@ -18,10 +18,11 @@ app.use(
   cors({
     credentials: true,
     origin: ['https://retwitter.vercel.app', 'http://localhost:3000'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+
+    // allowedHeaders: ['Content-Type', 'Authorization'],
     // ‘Access-Control-Allow-Origin
-    exposedHeaders: ['set-cookie'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    // exposedHeaders: ['set-cookie'],
+    // methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   })
 );
 
