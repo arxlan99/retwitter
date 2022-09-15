@@ -31,6 +31,9 @@ app.set('trust proxy', 1);
 app.use(express.json());
 app.use(cookieParser());
 
+app.use('/', (req: Request, res: Response, next: NextFunction) => {
+  res.send('Hello World!');
+});
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/tweets', tweetRoutes);
@@ -50,5 +53,5 @@ mongoose
   });
 
 app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
+  console.log(`App running on port http://localhost:${port} ...`);
 });
