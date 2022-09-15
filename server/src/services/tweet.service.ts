@@ -25,6 +25,7 @@ class TweetService extends HandlerFactory<ITweet> {
     next: NextFunction
   ) => Promise<void> = () => {
     return async (req, res, next) => {
+      console.log('req.file', req.file);
       try {
         // add file to bucket
         const blob = bucket.file(req.file.originalname);

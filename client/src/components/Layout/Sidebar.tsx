@@ -27,10 +27,13 @@ const Sidebar = (props: Props) => {
   const { mutateAsync } = useMutation(logout);
 
   const handleLogout = () => {
-    mutateAsync().then(() => {
-      window.location.href = '/auth/login';
-    });
-
+    mutateAsync()
+      .then(() => {
+        localStorage.removeItem('token');
+      })
+      .then(() => {
+        navigate('/login', { replace: true });
+      });
     // navigate('/auth/login');
   };
 

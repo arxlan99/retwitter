@@ -5,7 +5,8 @@ import { Link, Navigate, Outlet } from 'react-router-dom';
 import Spinner from 'assets/icons/spinner.svg';
 
 const ProtectedRoute = () => {
-  const { data, isLoading } = useQuery(['authMe'], getAuthMe, {
+  const token = localStorage.getItem('token');
+  /*   const { data, isLoading } = useQuery(['authMe'], getAuthMe, {
     retry: false,
   });
 
@@ -16,8 +17,8 @@ const ProtectedRoute = () => {
       </div>
     );
   }
-
-  return <div>{data ? <Navigate to="/" /> : <Outlet />}</div>;
+ */
+  return <div>{token ? <Navigate to="/" /> : <Outlet />}</div>;
 };
 
 export default ProtectedRoute;

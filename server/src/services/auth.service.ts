@@ -14,21 +14,19 @@ const signToken = (id: string) => {
 const createSendToken = (user: any, statusCode: any, req: Request, res: Response) => {
   const token = signToken(user._id);
 
-  res.cookie('jwt', token, {
+  /*   res.cookie('jwt', token, {
     expires: new Date(Date.now() + 1000 * 24 * 60 * 60 * 1000),
     httpOnly: true,
     sameSite: 'none',
     secure: true,
-    // httpOnly: true,
-    // secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
-  });
+  }); */
 
   // Remove password from output
   user.password = undefined;
 
   res.status(statusCode).json({
     status: 'success',
-    /*  token, */
+    token,
     data: {
       user,
     },
@@ -72,7 +70,6 @@ class AuthService {
 
   protect = () => {
     return async (req: any, res: Response, next: NextFunction) => {
-      console.log('protect-----', req.cookies);
       try {
         let token;
         if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -101,13 +98,19 @@ class AuthService {
   logout = () => {
     return async (req: Request, res: Response, next: NextFunction) => {
       try {
-        res.clearCookie('jwt', {
+        /*   res.clearCookie('jwt', {
           expires: new Date(Date.now() + 1000 * 24 * 60 * 60 * 1000),
           httpOnly: true,
           sameSite: 'none',
           secure: true,
+        }); */
+        res.status(200).json({
+          status: 'success',
+          data: {
+            message: 'Logged out successfully',
+            token: null,
+          },
         });
-        res.status(200).json({ status: 'success' });
       } catch (error) {
         next(error);
       }

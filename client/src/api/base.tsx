@@ -7,11 +7,11 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
 });
 
-/* api.interceptors.request.use((request: any) => {
-  request.headers.common.Authorization = `Bearer `;
+api.interceptors.request.use((request: any) => {
+  const token = localStorage.getItem('token');
+  request.headers.common.Authorization = `Bearer ${token}`;
   return request;
 });
- */
 
 api.interceptors.response.use(
   (response: any) => {
@@ -19,7 +19,7 @@ api.interceptors.response.use(
   },
   (error) => {
     if (error.response.status === 401 || error.response.status === 403) {
-      //   localStorage.removeItem('authToken');
+      localStorage.removeItem('token');
       window.location.href = '/auth/login';
     }
     return Promise.reject(error);

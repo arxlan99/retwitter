@@ -27,7 +27,7 @@ const Register = (props: Props) => {
       mutateAsync(data)
         .then((res) => {
           // eslint-disable-next-line no-console
-          console.log(res);
+          localStorage.setItem('token', res.token);
           navigate('/', { replace: true });
         })
         .catch((err) => {
