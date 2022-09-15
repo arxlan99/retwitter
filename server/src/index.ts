@@ -31,12 +31,13 @@ app.set('trust proxy', 1);
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/', (req: Request, res: Response, next: NextFunction) => {
-  res.send('Hello World!');
-});
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/tweets', tweetRoutes);
+
+app.use('/', (req: Request, res: Response, next: NextFunction) => {
+  res.send('Hello World!');
+});
 
 app.all('*', (req: Request, res: Response, next: NextFunction) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
