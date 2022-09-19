@@ -1,17 +1,23 @@
-import React, { useContext } from 'react';
-import ChatIcon from 'assets/jsx/chat-icon';
+import React, { useContext, useState } from 'react';
 import { ThemeContext } from 'context/ThemeContext';
-import RetweetIcon from 'assets/jsx/retweet-icon';
-import UploadIcon from 'assets/jsx/upload-icon';
-import { MdFavoriteBorder, MdOutlineModeComment } from 'react-icons/md';
+import { MdFavoriteBorder, MdOutlineModeComment, MdFavorite } from 'react-icons/md';
 import { BsUpload } from 'react-icons/bs';
 import { AiOutlineRetweet } from 'react-icons/ai';
+import { likeTweet } from 'api/endpoints';
+import { useMutation } from '@tanstack/react-query';
+import { useAppSelector } from 'store';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   tweet: any;
+  // eslint-disable-next-line react/no-unused-prop-types
+  refetch?: any;
 };
 
 const TweetCard = (props: Props) => {
+  const navigate = useNavigate();
+  const user = useAppSelector((state) => state.user);
+
   const { tweet } = props;
   const themeCtx = useContext(ThemeContext);
   const time = new Date(tweet.createdAt).toLocaleTimeString('en-US', {
@@ -19,14 +25,28 @@ const TweetCard = (props: Props) => {
     minute: 'numeric',
     hour12: false,
   });
+
   const color = !themeCtx.dark ? '#000' : '#fff';
+
+  const [hasLiked, setHasLiked] = useState(tweet.likes.includes(user._id));
+  const [likes, setLikes] = useState(tweet?.likes.length || 0);
+  const { mutate } = useMutation(likeTweet, {});
+
+  const handleLikeTweet = async () => {
+    mutate(tweet._id);
+
+    setHasLiked((prev: any) => !prev);
+    // eslint-disable-next-line no-return-assign
+    setLikes((prev: any) => (prev += hasLiked ? -1 : 1));
+  };
+
   return (
     <div className="border-b border-[#daedf0] dark:border-gray-700 flex px-4 py-3 gap-3 hover:bg-[#f7f7f7] hover:bg-darkDefaultHover/20 transition-all cursor-pointer text-black dark:text-white">
-      <div className="w-14">
+      <div className="w-14" onClick={() => navigate(`/profile/${tweet.user._id}`)}>
         <img
           src="https://aui.atlassian.com/aui/latest/docs/images/avatar-person.svg"
           className="w-full"
-          alt="as"
+          alt="profile"
         />
       </div>
       <div className="flex flex-col ">
@@ -52,10 +72,22 @@ const TweetCard = (props: Props) => {
               <div>1</div>
             </div>
             <div className="flex gap-1 items-center text-sm">
-              <div className="hover:bg-red-100 dark:hover:bg-darkDefaultHover p-2 rounded-full">
-                <MdFavoriteBorder color={color} size={20} />
-              </div>
-              <div>21</div>
+              <button
+                type="button"
+                className="hover:bg-red-100 dark:hover:bg-darkDefaultHover p-2 rounded-full"
+                onClick={() => handleLikeTweet()}>
+                {/*
+                    fill the heart icon if the user has liked the tweet
+                    
+                  */}
+                {hasLiked ? (
+                  <MdFavorite color="#e0245e" size={20} />
+                ) : (
+                  <MdFavoriteBorder color={color} size={20} />
+                )}
+              </button>
+
+              <div>{likes}</div>
             </div>
             <div className="p-2 rounded-full hover:bg-blue-100/80 dark:hover:bg-darkDefaultHover">
               <BsUpload color={color} size={20} />

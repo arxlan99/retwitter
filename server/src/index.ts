@@ -1,7 +1,8 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import cookieParser from 'cookie-parser';
+// import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
 
 import userRoutes from './api/routes/userRoutes';
 import authRoutes from './api/routes/authRoutes';
@@ -12,6 +13,7 @@ import globalErrorHandler from './controller/errorController';
 
 const app: Application = express();
 
+dotenv.config();
 const port = process.env.PORT || 4000;
 
 app.use(
@@ -26,10 +28,10 @@ app.use(
   })
 );
 
-app.set('trust proxy', 1);
+// app.set('trust proxy', 1);
 
 app.use(express.json());
-app.use(cookieParser());
+// app.use(cookieParser());
 
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);

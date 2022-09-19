@@ -59,6 +59,54 @@ class TweetService extends HandlerFactory<ITweet> {
       }
     };
   };
+
+  likeTweet: () => (
+    req: any,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ) => Promise<void> = () => {
+    return async (req, res, next) => {
+      try {
+        // remove like or
+        // add like
+
+        let like = null;
+        const doc: any = await this.Model.find({
+          _id: req.params.id,
+        });
+
+        if (doc[0].likes.length > 0 && doc[0].likes.includes(req.user._id)) {
+          like = false;
+          await this.Model.findByIdAndUpdate(
+            req.params.id,
+            {
+              $pull: {
+                likes: req.user._id,
+              },
+            },
+            {
+              new: true,
+              runValidators: true,
+            }
+          );
+        } else {
+          like = true;
+          await this.Model.findByIdAndUpdate(req.params.id, {
+            $push: {
+              likes: req.user._id,
+            },
+          });
+        }
+
+        res.status(200).json({
+          data: like,
+          status: 'success',
+        });
+      } catch (error: any) {
+        next(error);
+      }
+    };
+  };
 }
 
 export default TweetService;

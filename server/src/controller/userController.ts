@@ -7,6 +7,8 @@ export const getAllUsers = userService.getAll({
   unSelect: '-password -createdAt -updatedAt',
 });
 export const createUser = userService.createOne();
-export const getUser = userService.getOne();
+export const getUser = userService.getOne({
+  unSelect: '-password -createdAt -updatedAt',
+});
 export const updateUser = userService.updateOne();
 export const deleteUser = userService.deleteOne();

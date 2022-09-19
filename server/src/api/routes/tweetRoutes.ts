@@ -5,6 +5,7 @@ import {
   getAllTweets,
   getTweet,
   updateTweet,
+  likeTweet,
 } from './../../controller/tweetController';
 import { protect } from '../../controller/authContoller';
 
@@ -25,5 +26,7 @@ const router = express.Router();
 router.route('/').get(protect, getAllTweets).post(protect, multer.single('imgfile'), createTweet);
 
 router.route('/:id').get(getTweet).patch(updateTweet).delete(deleteTweet);
+
+router.route('/:id/like').post(protect, likeTweet);
 
 export default router;

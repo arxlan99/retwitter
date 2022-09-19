@@ -16,13 +16,17 @@ import TweetButton from 'components/buttons/TweetButton';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from 'api/endpoints';
 import { useMutation } from '@tanstack/react-query';
+import { useAppDispatch, useAppSelector } from 'store';
+import { AiOutlineClose } from 'react-icons/ai';
+import { toggle } from 'store/slices/menuSlice';
 
-type Props = {};
-
-const Sidebar = (props: Props) => {
+const Sidebar = () => {
   const themeCtx = useContext(ThemeContext);
   const color = !themeCtx.dark ? '#000' : '#fff';
   const navigate = useNavigate();
+  const menu = useAppSelector((state) => state.menu);
+  const user = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
 
   const { mutateAsync } = useMutation(logout);
 
@@ -38,8 +42,17 @@ const Sidebar = (props: Props) => {
   };
 
   return (
-    <div className="w-[281px] p-3 h-screen transition-all hidden lg:block">
+    <div
+      className={`absolute top-0 left-0 w-screen z-[99] lg:static lg:w-[281px] bg-white dark:bg-black p-3 h-screen transition-all lg:block ${
+        menu.open ? 'block' : 'hidden'
+      }`}>
       <div className="flex flex-col justify-between h-full">
+        <button
+          type="button"
+          className="lg:hidden block absolute right-5 top-5"
+          onClick={() => dispatch(toggle())}>
+          <AiOutlineClose className="text-2xl" />
+        </button>
         <div className="text-xl flex flex-col gap-1 ">
           <div className="pl-2 mb-4">
             <img src={twitter} alt="logo" />
@@ -105,7 +118,7 @@ const Sidebar = (props: Props) => {
 
         <div className="relative  cursor-pointer group text-black dark:text-white">
           <div className="hover:bg-defaultHover dark:hover:bg-darkDefaultHover flex justify-center py-1 px-2 gap-2  w-fit rounded-full items-center">
-            <div>
+            <div className="w-10">
               <img
                 src="https://aui.atlassian.com/aui/latest/docs/images/avatar-person.svg"
                 width={40}
@@ -113,10 +126,10 @@ const Sidebar = (props: Props) => {
               />
             </div>
             <div className="text-[15px]">
-              <div className="font-bold">Ozkan</div>
-              <div>@ozkan</div>
+              <div className="font-bold  min-w-[120px] ">{user.name}</div>
+              <div>@{user.name.split(' ')[0]}</div>
             </div>
-            <div className="ml-20">
+            <div className="ml-12">
               <DotIcon color="#000" />
             </div>
           </div>

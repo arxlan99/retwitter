@@ -6,6 +6,7 @@ import Home from './Home';
 import List from './List';
 import Notification from './Notification';
 import Profile from './Profile';
+import ProfileDetail from './ProfileDetail';
 import Settings from './Settings';
 
 const AppConfig = {
@@ -31,6 +32,10 @@ const AppConfig = {
             {
               path: '/profile',
               element: <Profile />,
+            },
+            {
+              path: '/profile/:id',
+              element: <ProfileDetail />,
             },
             {
               path: '/notifications',

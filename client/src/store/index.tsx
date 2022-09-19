@@ -13,15 +13,18 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import userReducer from './slices/userSlice';
+import menuReducer from './slices/menuSlice';
 
 const persistConfig = {
   key: 'root',
   version: 1,
   storage,
+  blacklist: ['menu'],
 };
 
 const rootReducer = combineReducers({
   user: userReducer,
+  menu: menuReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

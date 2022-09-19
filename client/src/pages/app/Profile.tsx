@@ -2,17 +2,14 @@ import React from 'react';
 import Calendar from 'assets/icons/calendar.svg';
 import Tabs from 'components/UI/Tabs';
 import { useAppSelector } from 'store';
+import Header from 'components/UI/Header';
 
-type Props = {};
-
-const Profile = (props: Props) => {
+const Profile = () => {
   const user = useAppSelector((state) => state.user);
 
   return (
     <div>
-      <div className="text-xl font-bold p-3 sticky top-0 bg-white/95 dark:bg-black z-50 text-black dark:text-white">
-        Ozkan
-      </div>
+      <Header title={user?.name} />
       <div>
         <img
           src="https://pbs.twimg.com/profile_banners/1360248526589026323/1617364065/1080x360"

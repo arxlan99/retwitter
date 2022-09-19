@@ -71,7 +71,7 @@ class HandlerFactory<TModel> {
       try {
         let query = this.Model.findById(req.params.id)
           .select(data?.unSelect)
-          .populate(data?.populate || '', data?.unSelect);
+          .populate(data?.populate || '');
         const doc = await query;
 
         if (!doc) {

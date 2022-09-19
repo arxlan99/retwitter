@@ -14,3 +14,6 @@ export const getTweet = tweetService.getOne({
 });
 export const updateTweet = tweetService.updateOne();
 export const deleteTweet = tweetService.deleteOne();
+
+// like tweet
+export const likeTweet = tweetService.likeTweet();
